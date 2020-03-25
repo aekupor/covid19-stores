@@ -1,0 +1,17 @@
+<html>
+    <head>
+      {% if title %}
+      <title>{{ title }} - Local Stores</title>
+      {% else %}
+      <title>Welcome to COVID-19 Local Stores</title>
+      {% endif %}
+    </head>
+    <body>
+        <div>
+          COVID-19 Local Stores:
+          <a href="/index">Home</a></div>
+          <a href="/login">Login</a>
+        <hr>
+        {% block content %}{% endblock %}
+    </body>
+</html>
