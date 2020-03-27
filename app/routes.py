@@ -26,10 +26,8 @@ def index():
         db.session.commit()
         flash('Your post is now live!')
         return redirect(url_for('index'))
-    posts = Post.query.all()
-    return render_template("index.html", title='Home Page', form=form,
-                           posts=posts)
-
+    posts = Post.query.order_by(Post.timestamp.desc())
+    return render_template("index.html", title='Home Page', form=form, posts=posts)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -70,6 +68,5 @@ def register():
 @app.route('/safeway')
 @login_required
 def safeway():
-    posts = Post.query.filter(or_(Post.store=='safeway', Post.store=='Safeway'))
-
+    posts = Post.query.filter(or_(Post.store=='safeway', Post.store=='Safeway')).order_by(Post.timestamp.desc())
     return render_template("safeway.html", posts=posts)

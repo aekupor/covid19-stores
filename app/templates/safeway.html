@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Hi, {{ current_user.username }}!</h1>
+    <p>See posts about Safeway: </p>
+
+    {% for post in posts %}
+    <p>
+    {{ post.author.username }} says: <b>{{ post.body }} </b> at: <b>{{post.store}} </b>
+    Time: {{post.timestamp.strftime("%m/%d/%Y, %H:%M:%S")}}
+    </p>
+    {% endfor %}
+
+{% endblock %}
