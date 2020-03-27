@@ -7,6 +7,10 @@
         <p>
             {{ form.post.label }}<br>
             {{ form.post(cols=32, rows=4) }}<br>
+
+            {{ form.store.label }}<br>
+            {{ form.store(cols=32, rows=4) }}<br>
+
             {% for error in form.post.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
@@ -15,7 +19,7 @@
     </form>
     {% for post in posts %}
     <p>
-    {{ post.author.username }} says: <b>{{ post.body }}</b>
+    {{ post.author.username }} says: <b>{{ post.body }} </b> at: <b>{{post.store}} </b>
     </p>
     {% endfor %}
 {% endblock %}
