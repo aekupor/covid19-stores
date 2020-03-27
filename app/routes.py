@@ -11,6 +11,8 @@ from app import db
 from app.forms import RegistrationForm
 from app.forms import PostForm
 from app.models import Post
+from sqlalchemy import or_
+
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -64,3 +66,10 @@ def register():
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
+
+@app.route('/safeway')
+@login_required
+def safeway():
+    posts = Post.query.filter(or_(Post.store=='safeway', Post.store=='Safeway'))
+
+    return render_template("safeway.html", posts=posts)
