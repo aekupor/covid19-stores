@@ -1,0 +1,20 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+      {% for post in posts %}
+      <p>
+      {{ post.author.username }} says: <b>{{ post.body }} </b> at: <b>{{post.store}} </b>
+      Time: {{post.timestamp.strftime("%m/%d/%Y, %H:%M:%S")}}
+      </p>
+      {% endfor %}
+
+      {% if prev_url %}
+      <a href="{{ prev_url }}">Newer posts</a>
+      {% endif %}
+      {% if next_url %}
+      <a href="{{ next_url }}">Older posts</a>
+      {% endif %}
+    </body>
+</html>
