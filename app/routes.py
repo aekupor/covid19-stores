@@ -13,8 +13,6 @@ from app.forms import PostForm
 from app.models import Post
 from sqlalchemy import or_
 
-
-
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 @login_required
@@ -79,12 +77,20 @@ def safeway():
     page = request.args.get('page', 1, type=int)
     posts = Post.query.filter(or_(Post.store=='safeway', Post.store=='Safeway')).order_by(Post.timestamp.desc()).paginate(
         page, app.config['POSTS_PER_PAGE'], False)
-
     next_url = url_for('safeway', page=posts.next_num) \
         if posts.has_next else None
     prev_url = url_for('safeway', page=posts.prev_num) \
         if posts.has_prev else None
-    return render_template('safeway.html',
-                               posts=posts.items, next_url=next_url,
-                               prev_url=prev_url)
-    #return render_template("safeway.html", posts=posts)
+    return render_template('safeway.html', posts=posts.items, next_url=next_url, prev_url=prev_url)
+
+@app.route('/traderjoes')
+@login_required
+def traderjoes():
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.filter(or_(Post.store=='trader joes', Post.store=='Trader Joes', Post.store=="trader joe's", Post.store=="Trader Joe's")).order_by(Post.timestamp.desc()).paginate(
+        page, app.config['POSTS_PER_PAGE'], False)
+    next_url = url_for('traderjoes', page=posts.next_num) \
+        if posts.has_next else None
+    prev_url = url_for('traderjoes', page=posts.prev_num) \
+        if posts.has_prev else None
+    return render_template('trader_joes.html', posts=posts.items, next_url=next_url, prev_url=prev_url)
