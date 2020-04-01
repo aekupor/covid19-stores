@@ -94,3 +94,8 @@ def traderjoes():
     prev_url = url_for('traderjoes', page=posts.prev_num) \
         if posts.has_prev else None
     return render_template('trader_joes.html', posts=posts.items, next_url=next_url, prev_url=prev_url)
+
+@app.route('/allstores')
+@login_required
+def allstores():
+    return render_template('all_stores.html')
