@@ -21,6 +21,14 @@
       <p>
       {{ post.author.username }} says: <b>{{ post.body }} </b> at: <b>{{post.store}} </b>
       Time: {{post.timestamp.strftime("%m/%d/%Y, %H:%M:%S")}}
+
+      {% if current_user.has_liked_post(post) %}
+        <a href="{{ url_for('like_action', post_id=post.id, action='unlike') }}">Unlike</a>
+      {% else %}
+        <a href="{{ url_for('like_action', post_id=post.id, action='like') }}">Like</a>
+      {% endif %}
+      {{ post.likes.count() }} likes
+
       </p>
     {% endfor %}
 
