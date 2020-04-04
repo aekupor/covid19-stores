@@ -4,10 +4,7 @@
     </head>
     <body>
       {% for post in posts %}
-      <p>
-      {{ post.author.username }} says: <b>{{ post.body }} </b> at: <b>{{post.store}} </b>
-      Time: {{post.timestamp.strftime("%m/%d/%Y, %H:%M:%S")}}
-      </p>
+        {% include 'post.html' %}
       {% endfor %}
 
       <nav aria-label="...">

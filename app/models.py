@@ -3,6 +3,7 @@ from app import db
 from app import login
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from hashlib import md5
 
 class PostLike(db.Model):
     __tablename__ = 'post_like'
@@ -45,6 +46,11 @@ class User(UserMixin, db.Model):
         return PostLike.query.filter(
             PostLike.user_id == self.id,
             PostLike.post_id == post.id).count() > 0
+
+    def avatar(self, size):
+        digest = md5(self.email.lower().encode('utf-8')).hexdigest()
+        return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(
+            digest, size)
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
