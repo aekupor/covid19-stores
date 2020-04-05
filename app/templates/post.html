@@ -10,16 +10,13 @@
             </a>
         </td>
         <td>
-            <a href="{{ url_for('user', username=post.author.username) }}">
+            <p><a href="{{ url_for('user', username=post.author.username) }}">
                 {{ post.author.username }}
             </a>
-            says:
-            <b>
-            {{ post.body }}
-            </b>
-            at: <b>{{post.store}} </b>
-            Time: {{post.timestamp.strftime("%m/%d/%Y, %H:%M")}}
-
+            says: <b>{{ post.body }}</b> at: <b>{{post.store}}</b> </p>
+            <br>
+            <p>Time: {{post.timestamp.strftime("%m/%d/%Y, %H:%M")}}</p>
+            <br>
             {% if current_user.has_liked_post(post) %}
               <a href="{{ url_for('like_action', post_id=post.id, action='unlike') }}">Unlike</a>
             {% else %}
