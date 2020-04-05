@@ -18,6 +18,7 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128))
     posts = db.relationship('Post', backref='author', lazy='dynamic')
     about_me = db.Column(db.String(140))
+    pic_url = db.Column(db.String(300))
     liked = db.relationship(
         'PostLike',
         foreign_keys='PostLike.user_id',

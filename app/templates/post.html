@@ -2,7 +2,11 @@
     <tr>
         <td width="70px">
             <a href="{{ url_for('user', username=post.author.username) }}">
-                <img src="{{ post.author.avatar(70) }}" />
+              {% if post.author.pic_url %}
+                <td><img src="{{ post.author.pic_url }}" width=70 height=70 /></td>
+              {% else %}
+                <td><img src="{{ post.author.avatar(70) }}"></td>
+              {% endif %}
             </a>
         </td>
         <td>
@@ -14,7 +18,7 @@
             {{ post.body }}
             </b>
             at: <b>{{post.store}} </b>
-            Time: {{post.timestamp.strftime("%m/%d/%Y, %H:%M:%S")}}
+            Time: {{post.timestamp.strftime("%m/%d/%Y, %H:%M")}}
 
             {% if current_user.has_liked_post(post) %}
               <a href="{{ url_for('like_action', post_id=post.id, action='unlike') }}">Unlike</a>

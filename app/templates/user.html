@@ -1,9 +1,14 @@
 {% extends "base.html" %}
 
+
 {% block app_content %}
     <table>
         <tr valign="top">
-            <td><img src="{{ user.avatar(128) }}"></td>
+          {% if user.pic_url %}
+            <td width="180px"><img src="{{ user.pic_url }}" width=150 height=150 /></td>
+          {% else %}
+            <td width="180px"><img src="{{ user.avatar(150) }}"></td>
+          {% endif %}
             <td>
               <h1>User: {{ user.username }}</h1>
               {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
