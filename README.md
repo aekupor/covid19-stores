@@ -1,3 +1,3 @@
 # covid19-stores
 
-COVID-19 project: see what stores nearby have products that are in/out of stock.
+Users post about local stores about which products are in/out of stock at local groceries. Users can like posts, update their profile picture and "about me" description, and sort posts by grocery.
