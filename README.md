@@ -13,3 +13,5 @@ Profile page:
 
 Login page:
 ![Login page](images/Login.png)
+
+Note: learned much of the Flask used in this project from https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world
